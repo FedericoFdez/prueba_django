@@ -13,9 +13,12 @@ def get_name(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/result')
     # if a GET (or any other method) we'll create a blank form
     else:
         form = NameForm()
 
     return render(request, 'simple_form/name.html', {'form': form})
+
+def result(request):
+    render(request, 'simple_form/result.html', {'result': result})
