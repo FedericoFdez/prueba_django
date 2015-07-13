@@ -1,0 +1,7 @@
+<p>Your last message was: {{ result }}</p>
+
+<form action="{% url 'simple_form:name' %}" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Submit" />
+</form>
