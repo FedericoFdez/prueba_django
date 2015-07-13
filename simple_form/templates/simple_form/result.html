@@ -1,6 +1,10 @@
-<p>Your last message was: {{ result }}</p>
+{% load staticfiles %}
 
-<form action="{% url 'simple_form:name' %}" method="post">
+<link rel="stylesheet" type="text/css" href="{% static 'simple_form/style.css' %}" />
+
+<p id="last">Your last message was: {{ result }}</p>
+
+<form action="{% url 'simple_form:message' %}" method="post">
 	{% csrf_token %}
 	{{ form }}
 	<input type="submit" value="Submit" />
