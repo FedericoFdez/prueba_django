@@ -1,6 +1,6 @@
 <p>This is your first message</p>
 
-<form action="{% url 'simple_form:message' %}" method="post">
+<form action="{% url 'simple_form:first' %}" method="post">
 	{% csrf_token %}
 	{{ form }}
 	<input type="submit" value="Submit" />

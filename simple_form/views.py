@@ -1,28 +1,47 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.views.generic.edit import FormView
+from django.core.urlresolvers import reverse
 
 from .forms import MessageForm
 
-def get_message(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = MessageForm(request.POST)
-        # check whether it's a valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            request.session['last_message'] = form.cleaned_data['message']
+# Now we're using Class-based views
 
-            # render result
-            return render(request, 'simple_form/result.html', {'form': MessageForm(),'result': request.session['last_message']})
+class FirstMessageView(FormView):
+    template_name = 'simple_form/name.html'
+    form_class = MessageForm
+    success_url = '/simpleform/known'
 
-    # if GET and cookie exists, render result
-    elif 'last_message' in request.session:
-        form = MessageForm()
-        return render(request, 'simple_form/result.html', {'form': form,'result': request.session['last_message']})
+    def render_to_response(self, context):
+        # if there is a cookie, redirect to KnownUserView
+        if 'last_message' in self.request.session:
+            return HttpResponseRedirect('/simpleform/known')
+        return super(FirstMessageView, self).render_to_response(context)      
 
-    # if GET (or any other method) and no cookie we'll create a blank form
-    else:
-        form = MessageForm()
+    def form_valid(self, form):
+        # save field in user cookie
+        self.request.session['last_message'] = form.cleaned_data['message']
+        return super(FirstMessageView, self).form_valid(form)
 
-    return render(request, 'simple_form/name.html', {'form': form})
+class KnownUserView(FormView):
+    template_name = 'simple_form/result.html'
+    form_class = MessageForm
+    success_url = '/simpleform/known'
+
+    def render_to_response(self, context):
+        # if there is no cookie, redirect to FirstMessageView
+        if not 'last_message' in self.request.session:
+            return HttpResponseRedirect('/simpleform')
+        return super(KnownUserView, self).render_to_response(context)
+
+    def form_valid(self, form):
+        # update field in user cookie
+        self.request.session['last_message'] = form.cleaned_data['message']
+        return super(KnownUserView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        # save field in context for the template to render correctly
+        context = super(KnownUserView, self).get_context_data(**kwargs)
+        if 'last_message' in self.request.session:
+            context['result'] = self.request.session['last_message']
+        return context

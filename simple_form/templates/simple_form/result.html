@@ -4,7 +4,7 @@
 
 <p id="last">Your last message was: {{ result }}</p>
 
-<form action="{% url 'simple_form:message' %}" method="post">
+<form action="{% url 'simple_form:known' %}" method="post">
 	{% csrf_token %}
 	{{ form }}
 	<input type="submit" value="Submit" />
