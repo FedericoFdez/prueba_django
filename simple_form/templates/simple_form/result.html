@@ -1,11 +1,5 @@
-{% load staticfiles %}
+{% extends 'simple_form/base.html' %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'simple_form/style.css' %}" />
+{% block head_message %}<p id="last">Your last message was: {{ result }}</p>{% endblock %}
 
-<p id="last">Your last message was: {{ result }}</p>
-
-<form action="{% url 'simple_form:known' %}" method="post">
-	{% csrf_token %}
-	{{ form }}
-	<input type="submit" value="Submit" />
-</form>
+{% block form_action %}{% url 'simple_form:known' %}{% endblock %}

@@ -1,7 +1,5 @@
-<p>This is your first message</p>
+{% extends 'simple_form/base.html' %}
 
-<form action="{% url 'simple_form:first' %}" method="post">
-	{% csrf_token %}
-	{{ form }}
-	<input type="submit" value="Submit" />
-</form>
+{% block head_message %}<p>This is your first message</p>{% endblock %}
+
+{% block form_action %}{% url 'simple_form:first' %}{% endblock %}
