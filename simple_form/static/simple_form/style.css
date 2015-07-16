@@ -1,3 +1,22 @@
+p {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 200px;
+}
+
 #last {
 	color:red;
+	font-size: 1.5em;
+}
+
+form {
+	text-align: center;
+}
+
+form label, form input {
+	margin-top,margin-bottom:10px;
+}
+
+div {
+	margin: 10px auto;
 }
