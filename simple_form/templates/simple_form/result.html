@@ -1,5 +1,9 @@
 {% extends 'simple_form/base.html' %}
 
-{% block head_message %}<p id="last">Your last message was: {{ result }}</p>{% endblock %}
+{% block head_message %}
+	<p class="last">Your last message was "<b>{{ message }}</b>"<br>
+		and it dates from <b>{{ date }}</b>
+	</p>
+{% endblock %}
 
 {% block form_action %}{% url 'simple_form:known' %}{% endblock %}

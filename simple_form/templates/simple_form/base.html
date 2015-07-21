@@ -6,8 +6,27 @@
 
 <form action="{% block form_action %}{% endblock %}" method="post">
 	{% csrf_token %}
-	{{ form }}
-	<input type="submit" value="Submit" />
+	{% if form.non_field_errors or form.message.errors or form.captcha.errors %}
+		<p class="errorlist">Errors:</p>
+    	{{ form.non_field_errors }}
+    	{{ form.message.errors }}
+    	{{ form.captcha.errors }}
+    {% endif %}
+    <div class="fieldWrapper">
+
+        {{ form.message.label_tag }}
+        {{ form.message }}
+    </div>
+    <div class="fieldWrapper">
+
+        {{ form.captcha.label_tag }}
+        {{ form.captcha }}
+    </div>
+    <input type="submit" value="Send message" />
 </form>
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<footer>
+	Federico A. Fernández Moreno
+</footer>

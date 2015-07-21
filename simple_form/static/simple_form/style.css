@@ -1,22 +1,48 @@
+/* colors:
+	http://www.w3schools.com/tags/ref_colormixer.asp?colorbottom=1E90FF&colortop=FFFFFF
+*/
+
 p {
 	text-align: center;
-	margin-top: 50px;
-	margin-bottom: 200px;
+	margin-top:50px;
 }
 
-#last {
-	color:red;
+
+footer {
+ 	position: absolute;
+ 	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	padding: 1rem;
+  	background-color: #DDEEFF;
+	color: #1E90FF;
+  	text-align: center;
+}
+
+.last {
+	color: #BCDEFF;
 	font-size: 1.5em;
 }
 
-form {
-	text-align: center;
+.last b {
+	color: #4BA6FF;
 }
 
-form label, form input {
-	margin-top,margin-bottom:10px;
+form {
+	margin-top: 200px;
+}
+
+form, div .fieldWrapper {
+	text-align: center;
 }
 
 div {
 	margin: 10px auto;
+}
+
+.errorlist {
+	color: OrangeRed;
+	width:200px;
+	text-align:left;
+	margin: 0 auto;
 }
