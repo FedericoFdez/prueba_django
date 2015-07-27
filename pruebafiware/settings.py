@@ -109,5 +109,7 @@ STATIC_URL = '/static/'
 # Django no-captcha re-captcha
 # https://github.com/ImaginaryLandscape/django-nocaptcha-recaptcha
 
+USE_CAPTCHA = True
+
 NORECAPTCHA_SITE_KEY   = '6Le87QkTAAAAABh0bDlbc7dINZ5LopDCuekwF5Pn'
 NORECAPTCHA_SECRET_KEY = '6Le87QkTAAAAAKyfW0JP3RzYfS2Xu8wh6jUUG_HP'
